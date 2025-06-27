@@ -18,9 +18,9 @@
 
 ## ✅ 1. プロジェクト初期化
 
-- [ ] Next.js + Mantine + Canvas構成のセットアップ
+- [x] Next.js + Mantine + Canvas構成のセットアップ
 - [ ] FastAPIの初期プロジェクト作成
-- [ ] Cloud Storage バケット作成（アップロード・公開設定）
+- [x] Cloud Storage バケット作成（アップロード・公開設定）
 - [ ] GitHubリポジトリ作成 & CI/CDパイプライン準備（Vercel + Cloud Run）
 
 ---
