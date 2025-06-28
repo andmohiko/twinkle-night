@@ -17,6 +17,7 @@
  */
 
 import { Avatars } from './avatars'
+import { Lyrics } from './lyrics'
 import { BackgroundMusic } from '@/components/background-music'
 import styles from './style.module.css'
 
@@ -34,6 +35,7 @@ export default function TwinklePage() {
       <div className={styles.twinkle}>
         <div className={styles.city}></div>
         <Avatars />
+        <Lyrics />
       </div>
     </div>
   )
