@@ -1,27 +1,27 @@
-# 🎨 twinkle night MV再現Webサイト 開発タスク指示書
+# 🎨 twinkle night MV 再現 Web サイト 開発タスク指示書
 
 ## 🌟 概要
 
-「twinkle night feat.somunia（nyankobrq & yaca）」のMVの世界に入り込めるWebサイトを制作。  
-ユーザーは自分のアバター画像をアップロードし、MVのようにふわふわと浮遊しながら夜の街を移動できる体験を得られる。
+「twinkle night feat.somunia（nyankobrq & yaca）」の MV の世界に入り込める Web サイトを制作。  
+ユーザーは自分のアバター画像をアップロードし、MV のようにふわふわと浮遊しながら夜の街を移動できる体験を得られる。
 
 ## 🧱 技術スタック
 
-- **フロントエンド**: Next.js App Router / TypeScript / Mantine / Canvas API  
-- **バックエンド**: Python / FastAPI  
-- **インフラ**:  
-  - フロントエンド：Vercel  
-  - バックエンド：Cloud Run  
+- **フロントエンド**: Next.js App Router / TypeScript / Mantine / Canvas API
+- **バックエンド**: Python / FastAPI
+- **インフラ**:
+  - フロントエンド：Vercel
+  - バックエンド：Cloud Run
   - ストレージ：Firebase Cloud Storage
 
 ---
 
 ## ✅ 1. プロジェクト初期化
 
-- [x] Next.js + Mantine + Canvas構成のセットアップ
-- [ ] FastAPIの初期プロジェクト作成
+- [x] Next.js + Mantine + Canvas 構成のセットアップ
+- [ ] FastAPI の初期プロジェクト作成
 - [x] Cloud Storage バケット作成（アップロード・公開設定）
-- [ ] GitHubリポジトリ作成 & CI/CDパイプライン準備（Vercel + Cloud Run）
+- [ ] GitHub リポジトリ作成 & CI/CD パイプライン準備（Vercel + Cloud Run）
 
 ---
 
@@ -29,14 +29,11 @@
 
 ### フロントエンド
 
-- [ ] 画像アップロードUIの実装（最大3枚まで）
+- [ ] 画像アップロード UI の実装（最大 3 枚まで）
 - [ ] アップロード済み画像のプレビュー表示
 - [ ] 「変換する」ボタン実装
-
-### バックエンド
-
-- [ ] `/upload` API：Cloud Storage に画像を保存
-- [ ] アップロード画像を識別するUUID等を返す
+- [ ] Cloud Storage for Firebase に画像をアップロード
+- [ ] アップロード画像のオブジェクト URL を取得
 
 ---
 
@@ -45,15 +42,15 @@
 - [ ] 背景除去（remove.bg API or U-2-Net）
 - [ ] 横顔生成（可能であれば、難易度高）
 - [ ] ドット絵変換（画像縮小 + 色数減少処理）
-- [ ] 加工後画像をCloud Storageへ保存
-- [ ] 加工済み画像URLをクライアントに返却
+- [ ] 加工後画像を Cloud Storage へ保存
+- [ ] 加工済み画像 URL をクライアントに返却
 
 ---
 
-## 🌃 4. MV世界の再現（Canvas）
+## 🌃 4. MV 世界の再現（Canvas）
 
-- [ ] MV風の夜の街背景を準備（ループできるように）
-- [ ] 背景の横スクロール処理（Canvas上）
+- [x] MV 風の夜の街背景を準備（ループできるように）
+- [x] 背景の横スクロール処理
 - [ ] アップロード画像の描画
 - [ ] アバターごとに上下にふわふわ浮遊するアニメーション
 
@@ -61,7 +58,7 @@
 
 ## 🎵 5. 音楽再生機能
 
-- [ ] YouTube埋め込みによるBGMループ再生（UI非表示）
+- [ ] YouTube 埋め込みによる BGM ループ再生（UI 非表示）
   - または音源データを直接再生（ライセンス確認要）
 
 ---
@@ -69,16 +66,16 @@
 ## 🔐 6. セキュリティと制限
 
 - [ ] アップロード画像のサイズ・形式バリデーション（フロント + API）
-- [ ] 最大3枚までのアップロード制限
-- [ ] Firebase Storage Rulesの設定
-- [ ] APIキー・認証（必要に応じて）
+- [ ] 最大 3 枚までのアップロード制限
+- [ ] Firebase Storage Rules の設定
+- [ ] API キー・認証（必要に応じて）
 
 ---
 
 ## 🚀 7. デプロイ & 動作確認
 
-- [ ] フロントエンド：Vercelへデプロイ（環境変数設定）
-- [ ] バックエンド：Cloud Runへデプロイ（Dockerfile準備）
+- [ ] フロントエンド：Vercel へデプロイ（環境変数設定）
+- [ ] バックエンド：Cloud Run へデプロイ（Dockerfile 準備）
 - [ ] 動作確認 & テスト実施
 
 ---
