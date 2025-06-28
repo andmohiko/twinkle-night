@@ -1,4 +1,4 @@
 {
-  "cSpell.words": ["Firestore"],
+  "cSpell.words": ["Firestore", "Mantine"],
   "prettier.configPath": "./frontend/.prettierrc.js"
 }
