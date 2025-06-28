@@ -1,7 +1,11 @@
 import { useState, useCallback, useEffect, useRef, RefObject } from 'react'
-
 import { useDisclosure } from '@mantine/hooks'
 import { type Crop } from 'react-image-crop'
+import { v4 as uuid } from 'uuid'
+
+import { uploadImage } from '@/infrastructure/storage/UploadOperations'
+
+const storagePath = 'images/avatars'
 
 export type FileWithPath = File & {
   path?: string
@@ -16,7 +20,7 @@ export const useCropImageInput = (
 ): [
   {
     file: FileObject | undefined
-    selectedImageRef: RefObject<HTMLImageElement>
+    selectedImageRef: RefObject<HTMLImageElement | null>
     uncroppedImageUrl: string | undefined
     crop: Crop
   },
@@ -92,9 +96,16 @@ export const useCropImageInput = (
         crop.height,
       )
 
-      canvas.toBlob((result) => {
+      canvas.toBlob(async (result) => {
         if (result instanceof Blob) {
-          setFile(URL.createObjectURL(result))
+          setIsLoading(true)
+          const filename = uuid()
+          const remoteFileUrl = await uploadImage(
+            `${storagePath}/${filename}`,
+            result,
+          )
+          setFile(remoteFileUrl)
+          setIsLoading(false)
         }
       })
     }
@@ -109,7 +120,9 @@ export const useCropImageInput = (
 
   useEffect(() => {
     if (fileData instanceof File) {
-      uncroppedImageUrl && URL.revokeObjectURL(uncroppedImageUrl)
+      if (uncroppedImageUrl) {
+        URL.revokeObjectURL(uncroppedImageUrl)
+      }
       setUncroppedImageUrl(URL.createObjectURL(fileData))
       handlers.open()
     } else {
@@ -119,7 +132,7 @@ export const useCropImageInput = (
   }, [fileData])
 
   const remove = useCallback(() => {
-    setFile(undefined)
+    setFile('')
   }, [setFile])
 
   const onSelectImage = useCallback((inputFiles: Array<FileWithPath>): void => {

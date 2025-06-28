@@ -1,3 +1,5 @@
+'use client'
+
 import { Modal } from '@mantine/core'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 

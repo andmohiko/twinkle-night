@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable @next/next/no-img-element */
 import { LoadingOverlay, Image, CloseButton, Overlay } from '@mantine/core'
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
