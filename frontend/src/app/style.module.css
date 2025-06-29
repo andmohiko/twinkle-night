@@ -43,17 +43,10 @@
 
   /* twinkle-down.png画像を下のラインに配置 */
   .city {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    height: 60%; /* 親divの半分の高さに設定 */
-    background-image: url('/images/twinkle-city-long.png');
+    height: 100%;
+    background-image: url('/images/twinkle-city.png');
     background-size: auto 100%; /* 高さを100%に、横幅は縦横比保持で自動調整 */
-    background-position: 100% bottom;
-    background-repeat: repeat-x; /* 横方向に画像を繰り返し */
-    pointer-events: none; /* クリックイベントを無効化 */
-    animation: horizontalScroll 2400s linear infinite; /* 左方向無限スクロールアニメーション（ゆっくり） */
   }
 
   .avatar {

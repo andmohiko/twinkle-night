@@ -20,6 +20,7 @@ import { Avatars } from './avatars'
 import { Lyrics } from './lyrics'
 import { BackgroundMusic } from '@/components/background-music'
 import styles from './style.module.css'
+import { InfiniteScroll } from '@/components/infinite-scroll'
 
 export default function TwinklePage() {
   return (
@@ -33,7 +34,9 @@ export default function TwinklePage() {
 
       {/* background */}
       <div className={styles.twinkle}>
-        <div className={styles.city}></div>
+        <InfiniteScroll>
+          <div className={styles.city}></div>
+        </InfiniteScroll>
         <Avatars />
         <Lyrics />
       </div>
