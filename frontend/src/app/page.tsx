@@ -16,20 +16,37 @@
  * - BGM機能は専用のクライアントコンポーネントに分離
  */
 
+import Image from 'next/image'
 import { Avatars } from './avatars'
 import { Music } from './music'
 import styles from './style.module.css'
+import { InfiniteScroll } from '@/components/infinite-scroll'
 
 export default function TwinklePage() {
   return (
     <div className={styles.container}>
-      {/* BGM再生（クライアントコンポーネント） */}
-      <Music />
-
-      {/* background */}
-      <div className={styles.twinkle}>
-        <div className={styles.city}></div>
+      <div className={styles.screen}>
+        <Music />
         <Avatars />
+        <Twinkle />
+      </div>
+    </div>
+  )
+}
+
+const Twinkle = () => {
+  return (
+    <div className={styles.twinkle}>
+      <div className={styles.city}>
+        <InfiniteScroll>
+          <Image
+            src="/images/twinkle-city-short.png"
+            alt="twinkle-city"
+            width={1639}
+            height={1000}
+            className={styles.cityImage}
+          />
+        </InfiniteScroll>
       </div>
     </div>
   )
