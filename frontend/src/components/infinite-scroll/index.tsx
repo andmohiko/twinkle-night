@@ -2,11 +2,10 @@ import { FC, ReactNode } from 'react'
 import styles from './style.module.css'
 
 type Props = {
-  className?: string
   children: ReactNode
 }
 
-export const InfiniteScroll: FC<Props> = ({ children, className }) => {
+export const InfiniteScroll: FC<Props> = ({ children }) => {
   return (
     <>
       <div className={styles.scrollContainer}>

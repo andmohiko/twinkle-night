@@ -12,13 +12,14 @@
   position: relative;
   width: 100%;
   height: 100%;
-  animation: infinite-scroll linear 10s infinite;
-}
+  animation: infinite-scroll linear 70s infinite;
 
-.scrollItem {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  flex-shrink: 0;
-  object-fit: cover;
+  .scrollItem {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    object-fit: none;
+    object-position: left;
+  }
 }
