@@ -1,6 +1,11 @@
-.mute {
-  position: absolute;
-  bottom: 4px;
-  left: 4px;
+.controller {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
   z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
 }

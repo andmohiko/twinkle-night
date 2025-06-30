@@ -28,6 +28,7 @@
 'use client'
 
 import { HiOutlineSpeakerWave, HiOutlineSpeakerXMark } from 'react-icons/hi2'
+import { SiYoutube } from 'react-icons/si'
 import { useEffect, useRef, useState } from 'react'
 import styles from './style.module.css'
 import { IconButton } from '../buttons/icon-button'
@@ -105,20 +106,31 @@ export function BackgroundMusic({
 
   return (
     <>
-      <div className={styles.mute}>
-        {isMuted ? (
-          <IconButton
-            importance="primary"
-            icon={<HiOutlineSpeakerXMark />}
-            onClick={toggleMute}
-          />
-        ) : (
-          <IconButton
-            importance="primary"
-            icon={<HiOutlineSpeakerWave />}
-            onClick={toggleMute}
-          />
-        )}
+      <div className={styles.controller}>
+        <a
+          href="https://www.youtube.com/watch?v=uUvthLpSHrQ"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <SiYoutube size={32} color="white" />
+        </a>
+        <div className={styles.mute}>
+          {isMuted ? (
+            <IconButton
+              importance="primary"
+              icon={<HiOutlineSpeakerXMark size={24} />}
+              onClick={toggleMute}
+              size="lg"
+            />
+          ) : (
+            <IconButton
+              importance="primary"
+              icon={<HiOutlineSpeakerWave size={24} />}
+              onClick={toggleMute}
+              size="lg"
+            />
+          )}
+        </div>
       </div>
       <audio
         ref={audioRef}

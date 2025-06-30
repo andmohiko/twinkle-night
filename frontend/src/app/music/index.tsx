@@ -3,6 +3,7 @@
 import { BackgroundMusic } from '@/components/background-music'
 import { useState } from 'react'
 import styles from './style.module.css'
+import { Lyrics } from '../lyrics'
 
 export const Music = (): React.ReactNode => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
@@ -20,6 +21,8 @@ export const Music = (): React.ReactNode => {
         loop={true}
         isPlaying={isPlaying}
       />
+
+      <Lyrics isPlaying={isPlaying} />
 
       {/* 音の再生の同意をとる */}
       {isPlaying ? null : (
