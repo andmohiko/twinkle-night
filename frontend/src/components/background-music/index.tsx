@@ -27,9 +27,7 @@
 
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-
-import styles from './style.module.css'
+import { useEffect, useRef } from 'react'
 
 type BackgroundMusicProps = {
   /** 音声ファイルのパス */
@@ -38,14 +36,16 @@ type BackgroundMusicProps = {
   volume?: number
   /** ループ再生するかどうか */
   loop?: boolean
+  /** 再生するかどうか */
+  isPlaying?: boolean
 }
 
 export function BackgroundMusic({
   src,
   volume = 0.5,
   loop = true,
+  isPlaying = false,
 }: BackgroundMusicProps) {
-  const [isPermitted, setIsPermitted] = useState<boolean>(false)
   const audioRef = useRef<HTMLAudioElement>(null)
 
   /**
@@ -59,6 +59,12 @@ export function BackgroundMusic({
       console.log('BackgroundMusic: 音量設定完了 -', volume)
     }
   }, [volume])
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current?.play()
+    }
+  }, [isPlaying])
 
   /**
    * オーディオエラーハンドリング
@@ -83,33 +89,15 @@ export function BackgroundMusic({
   }
 
   return (
-    <>
-      {/* 音の再生の同意をとる */}
-      {isPermitted ? null : (
-        <div className={styles.permission}>
-          <span className={styles.permissionText}>音を鳴らしてもいい？</span>
-          <button
-            className={styles.permissionButton}
-            onClick={() => {
-              setIsPermitted(true)
-              audioRef.current?.play()
-            }}
-          >
-            いいよ！
-          </button>
-        </div>
-      )}
-      {/* 音の再生 */}
-      <audio
-        ref={audioRef}
-        src={src}
-        loop={loop}
-        controls={false}
-        preload="auto"
-        onError={handleAudioError}
-        onLoadedData={handleAudioLoaded}
-        style={{ display: 'none' }}
-      />
-    </>
+    <audio
+      ref={audioRef}
+      src={src}
+      loop={loop}
+      controls={false}
+      preload="auto"
+      onError={handleAudioError}
+      onLoadedData={handleAudioLoaded}
+      style={{ display: 'none' }}
+    />
   )
 }

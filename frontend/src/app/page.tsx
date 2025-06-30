@@ -17,8 +17,7 @@
  */
 
 import { Avatars } from './avatars'
-import { Lyrics } from './lyrics'
-import { BackgroundMusic } from '@/components/background-music'
+import { Music } from './music'
 import styles from './style.module.css'
 import { InfiniteScroll } from '@/components/infinite-scroll'
 
@@ -26,11 +25,7 @@ export default function TwinklePage() {
   return (
     <div className={styles.container}>
       {/* BGM再生（クライアントコンポーネント） */}
-      <BackgroundMusic
-        src="/audio/twinkle_night.mp3"
-        volume={0.5}
-        loop={true}
-      />
+      <Music />
 
       {/* background */}
       <div className={styles.twinkle}>
@@ -38,7 +33,6 @@ export default function TwinklePage() {
           <div className={styles.city}></div>
         </InfiniteScroll>
         <Avatars />
-        <Lyrics />
       </div>
     </div>
   )
