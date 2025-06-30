@@ -86,12 +86,13 @@ export function BackgroundMusic({
   }
 
   const toggleMute = () => {
+    console.log('toggleMute', isMuted, audioRef.current?.volume)
     if (isMuted) {
-      audioRef.current!.volume = 0
-      setIsMuted(true)
-    } else {
       audioRef.current!.volume = volume
       setIsMuted(false)
+    } else {
+      audioRef.current!.volume = 0
+      setIsMuted(true)
     }
   }
 
