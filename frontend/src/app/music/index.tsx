@@ -12,7 +12,7 @@ export const Music = (): React.ReactNode => {
   }
 
   return (
-    <div>
+    <>
       {/* BGM再生（クライアントコンポーネント） */}
       <BackgroundMusic
         src="/audio/twinkle_night.mp3"
@@ -35,6 +35,6 @@ export const Music = (): React.ReactNode => {
           </button>
         </div>
       )}
-    </div>
+    </>
   )
 }

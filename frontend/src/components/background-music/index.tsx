@@ -27,7 +27,10 @@
 
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { HiOutlineSpeakerWave, HiOutlineSpeakerXMark } from 'react-icons/hi2'
+import { useEffect, useRef, useState } from 'react'
+import styles from './style.module.css'
+import { IconButton } from '../buttons/icon-button'
 
 type BackgroundMusicProps = {
   /** 音声ファイルのパス */
@@ -47,6 +50,7 @@ export function BackgroundMusic({
   isPlaying = false,
 }: BackgroundMusicProps) {
   const audioRef = useRef<HTMLAudioElement>(null)
+  const [isMuted, setIsMuted] = useState<boolean>(false)
 
   /**
    * コンポーネントマウント時の処理
@@ -81,6 +85,16 @@ export function BackgroundMusic({
     })
   }
 
+  const toggleMute = () => {
+    if (isMuted) {
+      audioRef.current!.volume = 0
+      setIsMuted(true)
+    } else {
+      audioRef.current!.volume = volume
+      setIsMuted(false)
+    }
+  }
+
   /**
    * オーディオ読み込み完了時の処理
    */
@@ -89,15 +103,32 @@ export function BackgroundMusic({
   }
 
   return (
-    <audio
-      ref={audioRef}
-      src={src}
-      loop={loop}
-      controls={false}
-      preload="auto"
-      onError={handleAudioError}
-      onLoadedData={handleAudioLoaded}
-      style={{ display: 'none' }}
-    />
+    <>
+      <div className={styles.mute}>
+        {isMuted ? (
+          <IconButton
+            importance="primary"
+            icon={<HiOutlineSpeakerXMark />}
+            onClick={toggleMute}
+          />
+        ) : (
+          <IconButton
+            importance="primary"
+            icon={<HiOutlineSpeakerWave />}
+            onClick={toggleMute}
+          />
+        )}
+      </div>
+      <audio
+        ref={audioRef}
+        src={src}
+        loop={loop}
+        controls={false}
+        preload="auto"
+        onError={handleAudioError}
+        onLoadedData={handleAudioLoaded}
+        style={{ display: 'none' }}
+      />
+    </>
   )
 }
