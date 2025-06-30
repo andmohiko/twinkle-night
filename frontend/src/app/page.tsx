@@ -17,25 +17,19 @@
  */
 
 import { Avatars } from './avatars'
-import { Lyrics } from './lyrics'
-import { BackgroundMusic } from '@/components/background-music'
+import { Music } from './music'
 import styles from './style.module.css'
 
 export default function TwinklePage() {
   return (
     <div className={styles.container}>
       {/* BGM再生（クライアントコンポーネント） */}
-      <BackgroundMusic
-        src="/audio/twinkle_night.mp3"
-        volume={0.5}
-        loop={true}
-      />
+      <Music />
 
       {/* background */}
       <div className={styles.twinkle}>
         <div className={styles.city}></div>
         <Avatars />
-        <Lyrics />
       </div>
     </div>
   )
