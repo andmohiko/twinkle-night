@@ -18,7 +18,7 @@ export const Music = (): React.ReactNode => {
       <BackgroundMusic
         src="/audio/twinkle_night.mp3"
         volume={0.5}
-        loop={true}
+        loop={false}
         isPlaying={isPlaying}
       />
 

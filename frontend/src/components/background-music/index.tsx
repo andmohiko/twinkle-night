@@ -9,7 +9,6 @@
  * @features
  * - 同意ボタンUI表示
  * - ユーザー操作による再生開始
- * - ループ再生
  * - 音量調整
  * - エラーハンドリング
  * - 音声ファイル読み込み状況の監視
@@ -38,7 +37,7 @@ type BackgroundMusicProps = {
   src: string
   /** 音量（0.0 - 1.0） */
   volume?: number
-  /** ループ再生するかどうか */
+  /** ループ再生するかどうか（デフォルト: false） */
   loop?: boolean
   /** 再生するかどうか */
   isPlaying?: boolean
@@ -47,7 +46,7 @@ type BackgroundMusicProps = {
 export function BackgroundMusic({
   src,
   volume = 0.5,
-  loop = true,
+  loop = false,
   isPlaying = false,
 }: BackgroundMusicProps) {
   const audioRef = useRef<HTMLAudioElement>(null)
