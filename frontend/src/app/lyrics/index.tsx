@@ -4,13 +4,12 @@
  * @description
  * - 指定されたタイミングで歌詞を自動的に切り替え表示
  * - 各歌詞のshowMsに基づいてタイマー制御
- * - 最後の歌詞まで表示したらループする
+ * - 最後の歌詞まで表示したら終了する
  * - isPlayingがtrueの時のみ歌詞表示を開始
  *
  * @features
  * - タイミング制御による歌詞表示
  * - 自動的な歌詞切り替え
- * - ループ再生機能
  * - メモリリーク防止のタイマークリーンアップ
  * - 再生状態に連動した歌詞表示制御
  *
@@ -24,42 +23,7 @@
 
 import { useEffect, useState } from 'react'
 import styles from './style.module.css'
-
-type Lyric = {
-  text: string
-  showMs: number
-}
-
-const lyrics: Lyric[] = [
-  {
-    text: '',
-    showMs: 0,
-  },
-  {
-    text: '君と過ごす夜 少しアーバン 処理速度高速 私から',
-    showMs: 2180,
-  },
-  {
-    text: '送るデータは膨大 「無理、受け取れない」とか',
-    showMs: 7240,
-  },
-  {
-    text: 'ダメだよ！ 愛してtwinkle night',
-    showMs: 11100,
-  },
-  {
-    text: '君と過ごす夜 少しアーバン 甘々なひととき君にオーダー',
-    showMs: 13200,
-  },
-  {
-    text: 'コマ送り メモリー イルミの前 手を取り',
-    showMs: 18260,
-  },
-  {
-    text: '言葉と指を交わそうよ 恋のセオリー',
-    showMs: 21200,
-  },
-]
+import { lyrics } from './types'
 
 type Props = {
   isPlaying: boolean
@@ -96,15 +60,6 @@ export const Lyrics = ({ isPlaying }: Props): React.ReactNode => {
 
       timers.push(timer)
     })
-
-    // 最後の歌詞の後にループを開始（オプション）
-    const lastLyric = lyrics[lyrics.length - 1]
-    const loopTimer = setTimeout(() => {
-      console.log('Lyrics: 歌詞ループを開始します')
-      setCurrentLyricIndex(0) // 最初に戻る
-    }, lastLyric.showMs + 2000) // 最後の歌詞から2秒後にループ
-
-    timers.push(loopTimer)
 
     // クリーンアップ関数でタイマーを削除
     return () => {
