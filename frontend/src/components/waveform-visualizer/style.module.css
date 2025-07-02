@@ -1,0 +1,30 @@
+/**
+ * スペクトラムアナライザー波形表示用スタイル
+ *
+ * @description
+ * - 親要素内で波形を表示
+ * - 親要素の横幅（1200px）に合わせた表示
+ * - 黄色系のテーマカラーに対応したスタイリング
+ * - twinkle nightの世界観に合わせたデザイン
+ *
+ * @layout
+ * - waveformCanvas: Canvas要素のスタイリング
+ *
+ * @canvas_styling
+ * - 親要素の幅100%に追従
+ * - ポインターイベント無効化（クリック透過）
+ * - 高品質描画のための画像レンダリング最適化
+ * - 適度な透明度で背景と調和
+ *
+ */
+
+/* Canvas要素のスタイリング */
+.waveformCanvas {
+  width: 100%;
+  display: block;
+  pointer-events: none;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  opacity: 0.9;
+  height: 300px;
+}
