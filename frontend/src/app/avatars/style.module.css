@@ -9,31 +9,33 @@
   }
 }
 
-.avatar1 {
-  position: absolute;
-  bottom: 15px;
-  right: 330px;
-  z-index: 1;
-  height: 190px;
-  animation: floatingAnimation 4s ease-in-out infinite; /* ふわふわアニメーション */
-}
+.avatars {
+  .avatar1 {
+    position: absolute;
+    bottom: calc(15px + 58px);
+    right: 330px;
+    z-index: 3;
+    height: 190px;
+    animation: floatingAnimation 4s ease-in-out infinite; /* ふわふわアニメーション */
+  }
 
-.avatar2 {
-  position: absolute;
-  bottom: 5px;
-  right: 155px;
-  z-index: 1;
-  height: 210px;
-  animation: floatingAnimation 4s ease-in-out infinite; /* ふわふわアニメーション */
-  animation-delay: 1s; /* 位相を2秒ずらして50%オフセット */
-}
+  .avatar2 {
+    position: absolute;
+    bottom: calc(5px + 58px);
+    right: 155px;
+    z-index: 3;
+    height: 210px;
+    animation: floatingAnimation 4s ease-in-out infinite; /* ふわふわアニメーション */
+    animation-delay: 1s; /* 位相を2秒ずらして50%オフセット */
+  }
 
-.avatar3 {
-  position: absolute;
-  bottom: -5px;
-  right: 30px;
-  z-index: 1;
-  height: 170px;
-  animation: floatingAnimation 4s ease-in-out infinite; /* ふわふわアニメーション */
-  animation-delay: 2s; /* 位相を2秒ずらして50%オフセット */
+  .avatar3 {
+    position: absolute;
+    bottom: calc(-5px + 58px);
+    right: 30px;
+    z-index: 3;
+    height: 170px;
+    animation: floatingAnimation 4s ease-in-out infinite; /* ふわふわアニメーション */
+    animation-delay: 2s; /* 位相を2秒ずらして50%オフセット */
+  }
 }

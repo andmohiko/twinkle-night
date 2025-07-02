@@ -28,7 +28,9 @@ export default function TwinklePage() {
       <div className={styles.screen}>
         <Music />
         <Avatars />
-        <Twinkle />
+        <div className={styles.twinkleContainer}>
+          <Twinkle />
+        </div>
       </div>
     </div>
   )
@@ -40,7 +42,7 @@ const Twinkle = () => {
       <div className={styles.city}>
         <InfiniteScroll>
           <Image
-            src="/images/twinkle-city-short.png"
+            src="/images/twinkle-city-short-transparent.png"
             alt="twinkle-city"
             width={1639}
             height={1000}
