@@ -5,6 +5,7 @@
  * - ユーザーの同意を得てからBGMを再生する
  * - 同意ボタンを表示し、クリック後に音声再生を開始
  * - ブラウザの自動再生ポリシーに準拠した設計
+ * - Web Audio API統合により波形表示に対応
  *
  * @features
  * - 同意ボタンUI表示
@@ -12,16 +13,25 @@
  * - 音量調整
  * - エラーハンドリング
  * - 音声ファイル読み込み状況の監視
+ * - Web Audio API連携（波形表示用）
  *
  * @ui_components
  * - 同意確認メッセージ「音を鳴らしてもいい？」
  * - 同意ボタン「いいよ！」
  * - 非表示のaudio要素
+ * - 波形表示コンポーネント
  *
  * @user_flow
  * 1. ページロード時に同意確認UIを表示
  * 2. ユーザーが「いいよ！」ボタンをクリック
  * 3. BGM再生開始
+ * 4. Web Audio API初期化
+ * 5. 波形表示開始
+ *
+ * @audio_integration
+ * - HTMLAudioElementとWeb Audio APIの連携
+ * - 音声解析用AnalyserNodeの提供
+ * - 波形表示コンポーネントとの連動
  */
 
 'use client'
@@ -31,6 +41,8 @@ import { SiYoutube } from 'react-icons/si'
 import { useEffect, useRef, useState } from 'react'
 import styles from './style.module.css'
 import { IconButton } from '../buttons/icon-button'
+import { WaveformVisualizer } from '../waveform-visualizer'
+import { useAudioAnalyser } from '../waveform-visualizer/useAudioAnalyser'
 
 type BackgroundMusicProps = {
   /** 音声ファイルのパス */
@@ -52,6 +64,9 @@ export function BackgroundMusic({
   const audioRef = useRef<HTMLAudioElement>(null)
   const [isMuted, setIsMuted] = useState<boolean>(false)
 
+  // Web Audio API統合
+  const { analyserNode, isInitialized, initializeAnalyser } = useAudioAnalyser()
+
   /**
    * コンポーネントマウント時の処理
    * 音量設定のみ行う（再生は同意ボタンで行う）
@@ -67,8 +82,12 @@ export function BackgroundMusic({
   useEffect(() => {
     if (isPlaying) {
       audioRef.current?.play()
+      // Web Audio APIの初期化
+      if (audioRef.current && !isInitialized) {
+        initializeAnalyser(audioRef.current)
+      }
     }
-  }, [isPlaying])
+  }, [isPlaying, isInitialized, initializeAnalyser])
 
   /**
    * オーディオエラーハンドリング
@@ -141,6 +160,13 @@ export function BackgroundMusic({
         onLoadedData={handleAudioLoaded}
         style={{ display: 'none' }}
       />
+      <div className={styles.waveformWrapper}>
+        <WaveformVisualizer
+          analyserNode={analyserNode}
+          isPlaying={isPlaying}
+          height={400}
+        />
+      </div>
     </>
   )
 }

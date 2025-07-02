@@ -9,3 +9,15 @@
   justify-content: flex-end;
   gap: 16px;
 }
+
+.waveformWrapper {
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  z-index: 1;
+  transform: translateX(-50%);
+  width: 1500px;
+  height: 400px;
+  display: flex;
+  align-items: flex-end;
+}
