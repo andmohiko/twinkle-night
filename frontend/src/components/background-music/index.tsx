@@ -164,7 +164,7 @@ export function BackgroundMusic({
         <WaveformVisualizer
           analyserNode={analyserNode}
           isPlaying={isPlaying}
-          height={400}
+          height={500}
         />
       </div>
     </>

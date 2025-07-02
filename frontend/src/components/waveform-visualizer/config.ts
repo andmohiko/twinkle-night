@@ -63,7 +63,7 @@ export const WAVEFORM_STYLE: WaveformStyle = {
   minBarHeight: 2,
 
   /** バーの最大高さ: 390px */
-  maxBarHeight: 390,
+  maxBarHeight: 490,
 }
 
 /**
